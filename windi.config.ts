@@ -9,6 +9,8 @@ const MyPlugin = plugin(({ addComponents }) => {
             height: '100px',
             border: '1px solid #ccc',
         },
+
+        
         '.not-nested': {
             backgroundColor: 'red',
         },
@@ -18,6 +20,8 @@ const MyPlugin = plugin(({ addComponents }) => {
             height: '30px',
             borderRadius: '50%',
         },
+
+
         '.nested': {
             backgroundColor: 'green',
             '> *': {
