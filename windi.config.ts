@@ -1,39 +1,41 @@
-import { defineConfig } from 'vite-plugin-windicss'
-import plugin from 'windicss/plugin'
+import { defineConfig } from 'vite-plugin-windicss';
+import plugin from 'windicss/plugin';
 
-const MyPlugin = plugin(({ addComponents }) => {
-    addComponents({
-        '.circle':{
-            borderRadius: '50%',
-            width: '100px',
-            height: '100px',
-            border: '1px solid #ccc',
-        },
+const MyPlugin = plugin(({ addComponents, addBase }) => {
+  addComponents({
+    '.square': {
+      width: '100px',
+      height: '100px',
+      border: '1px solid #ccc',
+      '> *': {
+        fontWeight: 'bold',
+        margin: '10px',
+        border: '2px solid black',
+      },
+    },
 
-        
-        '.not-nested': {
-            backgroundColor: 'red',
-        },
-        '.not-nested > *': {
-            backgroundColor: 'blue',
-            width: '30px',
-            height: '30px',
-            borderRadius: '50%',
-        },
+    '.not-nested': {
+      backgroundColor: 'red',
+    },
+    '.not-nested > *': {
+      color: 'blue',
+    },
 
-
-        '.nested': {
-            backgroundColor: 'green',
-            '> *': {
-                backgroundColor: 'yellow',
-                width: '30px',
-                height: '30px',
-                borderRadius: '50%',
-            }
-        },
-    })	
-})
+    '.nested': {
+      backgroundColor: 'green',
+      '> *': {
+        color: 'yellow',
+      },
+    },
+  });
+  addBase({
+    h1: {
+      fontSize: '2rem',
+      fontWeight: 'bold',
+    },
+  });
+});
 
 export default defineConfig({
-    plugins: [MyPlugin]
-})
+  plugins: [MyPlugin],
+});
